@@ -1,10 +1,51 @@
-def is_float(s):
+def is_float(string):
     try:
-        float(s)
+        float(string)
         return True
     except ValueError:
         return False
     
+
+def split_line(line):
+    items = []
+    items.append("")
+    for it in line.split(" "):
+        if is_float(it.replace("cal", "")):
+            items.insert(1, float(it.replace("cal", "")))
+        elif is_float(it.replace("p", "")):
+            items.insert(2, float(it.replace("p", "")))    
+        else:
+            items[0] += it + " "
+    items[0] = items[0].strip()
+    return items
+
+
+def text_calorie_calculator(items):
+    print("------- Minimal calorie calculator -------")
+    print("Enter the 'name {number}cal {number}p' of a specific food: ")
+    while True:
+        line = input("> ").lower()
+        if line == "":
+            break
+
+        line = line.replace(",", ".")
+        sline = split_line(line)
+        if len(sline) < 3 or sline[0] == "":
+            print(f"Invalid line: '{line}'; must have: 'name {{number}}cal {{number}}p'")
+            continue
+
+        for i in range(len(sline)):
+            items[i].append(sline[i])
+    return items
+
+
+def calc_min_nutrients(items, total_cal, total_p):
+    for i in items[1]:
+        total_cal += i
+    for i in items[2]:
+        total_p += i
+
+    return (total_cal, total_p)
 
 
 def main():
@@ -12,37 +53,15 @@ def main():
     calories = []
     protein = []
     items = (name, calories, protein)
-    lc = 0      #line count
     total_cal = 0
     total_p = 0
 
-    print("Enter the minimal calorie tracker that you have (name *cal *p): ")
-    while True:
-        line = input("> ")
-        if line == "":
-            break
+    items = text_calorie_calculator(items)
+    total_cal, total_p = calc_min_nutrients(items, total_cal, total_p)
 
-        line = line.replace(",", ".")
-        items[0].append("")
-
-        for t in line.split(" "):
-            if is_float(t.replace("cal", "")):
-                items[1].append(t)
-                items[1][lc] = float(items[1][lc].replace("cal", ""))
-                total_cal += items[1][lc]
-
-            elif is_float(t.replace("p", "")):
-                items[2].append(t)
-                items[2][lc] = float(items[2][lc].replace("p", ""))
-                total_p += items[2][lc]
-                
-            else:
-                items[0][lc] += t + " "
-
-        items[0][lc] = items[0][lc].strip()
-        lc += 1
-
-    print(f"Total: {total_cal:.1f}cal {total_p:.1f}p")
+    t = f"Total: {total_cal:.1f}cal {total_p:.1f}p"
+    print(t)
+    print(t.replace(".", ","))
 
 if __name__ == "__main__":
     main()
