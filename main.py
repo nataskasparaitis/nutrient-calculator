@@ -4,42 +4,63 @@ def is_float(string):
         return True
     except ValueError:
         return False
+
+   
+def is_digit_alpha(string):
+    digit_count = 0
+    alpha_count = 0
+    for c in string:
+        if c.isdigit():
+            digit_count += 1
+        elif c.isalpha():
+            alpha_count += 1
+    if digit_count > 0 and alpha_count > 0:
+        return True
+    else:
+        return False
+
+
+def strip_digits(string):
+    new = ""
+    for c in string:
+        if not c.isdigit():
+            new += c
+    return new
+
+
+def strip_alpha(string):
+    new = ""
+    for c in string:
+        if not c.isalpha():
+            new += c
+    return new
     
 
+
 def split_line(line):
-    items = []
-    items.append("")
-    for it in line.split(" "):
-        if is_float(it.replace("cal", "")):
-            items.insert(1, float(it.replace("cal", "")))
-        elif is_float(it.replace("p", "")):
-            items.insert(2, float(it.replace("p", "")))    
-        else:
-            items[0] += it + " "
-    items[0] = items[0].strip()
-    return items
-
-
-def split_line_new(line):
-    items = []
-    item_types = ["name", "g", "cal", "p", "car", "f"]
-    first_name_iteration = True
+    items = {"name": "-", "mass": "-", "calories": "-", "protein": "-", "carbs": "-", "fat": "-"}
+    item_types = {"mass": "g", "calories": "cal", "protein": "p", "carbs": "car", "fat": "f"}   #if this line is used a lot maybe move to main and add as an argument to the function
     for it in line.split(" "):
         if it.isnumeric():
-            items = []
+            print(f"Input Error: '{it}'; must have a valid nutrient abbreviation: {it}g/cal/p/car/f")
+            items = {}
             return items
+        elif is_digit_alpha(it):
+            if not it.endswith(tuple(item_types.values())):
+                print(f"Input Error: '{it}'; must have a valid nutrient abbreviation: {it.replace(strip_digits(it), "")}g/cal/p/car/f")
+                items = {}
+                return items
+            else:   #add an if that checks if with the suffix removed the item is_digit_alpha (so this 1a0a0cal would print an error)
+                for key, value in item_types.items():
+                    if is_float(it.replace(value, "")) and items[key] == "-":
+                        items.update({key: float(it.replace(value, ""))})
+                    elif is_float(it.replace(value, "")) and is_float(items[key]):
+                        items[key] += float(it.replace(value, ""))
         elif it.isalpha():
-            if first_name_iteration:
-                items.insert(item_types.index("name"), it)
-                first_name_iteration = False
+            if items["name"] == "-":
+                items.update({"name": it})
             else:
-                items[item_types.index("name")] += " " + it
-            
-        for type in item_types:
-            if type == "name":
-                continue
-            elif is_float(it.replace(type, "")):
-                items.insert(item_types.index(type), float(it.replace(type, "")))
+                items["name"] += " " + it
     return items
 
 
@@ -54,50 +75,59 @@ def text_calorie_calculator(items):
         line = line.replace(",", ".")
         sline = split_line(line)
         if len(sline) == 0:
-            print(f"Invalid input: '{sline}'; must have at least one or more of: name {{number}}g/cal/p/car/f")
+            print(f"Try again")
             continue
 
-        for i in range(len(sline)):
-            items[i].append(sline[i])
+        items.append(sline)
     return items
 
 
-def calc_min_nutrients(items, total_cal, total_p):
-    for i in items[1]:
-        total_cal += i
-    for i in items[2]:
-        total_p += i
-    return (total_cal, total_p)
+def calc_total_nutrients(items, total):
+    
+    for item in items:
+        for key, value in item.items():
+            if key == "name" or value == "-":
+                continue
+            elif total[key] == "-":
+                total[key] = 0
+            total[key] += value
+    return total
 
 
 def main():
-    name = []
-    calories = []
-    protein = []
-    items = (name, calories, protein)
-    total_g = 0
-    total_cal = 0
-    total_p = 0
-    total_car = 0
-    total_f = 0
-
-
-    temp = split_line_new("100g vistiena 100cal 1,5f 0car 22p")
-    print(temp)
-    input("Enter")
+    items = []
+    total = {"mass": "-", "calories": "-", "protein": "-", "carbs": "-", "fat": "-"}
+    item_types = {"mass": "g", "calories": "cal", "protein": "p", "carbs": "car", "fat": "f"}
 
     items = text_calorie_calculator(items)
-    total_cal, total_p = calc_min_nutrients(items, total_cal, total_p)
+    total = calc_total_nutrients(items, total)
 
-    t = f"Total: {total_cal:.1f}cal {total_p:.1f}p"
-    print(t)
-    print(t.replace(".", ","))
+    print("Today you ate:")
+    for i in items:
+        for key, value in i.items():
+            if key != "name":
+                print(f"{value}{item_types[key]} ", end="")
+            else:
+                print(f"{value} ", end="")
+        print()
+
+    total_string = "\n"
+    for key, value in total.items():
+        if value == "-":
+            total_string += f"Total {key + ":":<10} {value}\n"
+        else:
+            total_string += f"Total {key + ":":<10} {value}{item_types[key]}\n"
+
+    print(total_string)
+    print(f"{total["calories"]}cal {total["protein"]}p".replace(".", ","))
 
 if __name__ == "__main__":
     main()
 
 #modify so the input can be name g cal p car f; not all must be provided ✅
-#print total of all nutrients provided
+#switching from (name = [], calories = [], protein = []) to [{"name": }, {"calories": }, {"protein": }, ...] ✅
+#make it so if 100c in input that would provide an error message ✅
+#print total of all nutrients provided ✅
 #add a option what to choose (nutrient text calculator, ...)
 #add entries by date (choose: today, or enter date yourself)
 #add print of a specific date (type in date, most cal, most p, best cal to p ratio, choose your own ratio)
