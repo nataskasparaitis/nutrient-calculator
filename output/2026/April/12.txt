@@ -1,0 +1,12 @@
+Today you ate:
+bomzpakis -g 200.0cal 5.0p -car -f 
+plovas -g 465.0cal 17.7p -car -f 
+protein bar -g 180.0cal 22.5p -car -f 
+
+Total mass:      -
+Total calories:  845.0cal
+Total protein:   45.2p
+Total carbs:     -
+Total fat:       -
+
+845,0cal 45,2p
