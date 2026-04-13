@@ -3,7 +3,7 @@
 
 import os
 import datetime
-from string_utils import convert_if_int
+from string_utils import convert_if_int, convert_month_to_digit, convert_digit_to_month
 
 
 def get_choise(choise_type):
@@ -40,7 +40,7 @@ def valid_date(year=1, month=1, day=1):
         return False
     
 
-def enter_valid_date():
+def input_valid_date():
     while True:
         year = input("Input the year:   \n> ")
         month = input("Input the month:   \n> ")
@@ -60,70 +60,26 @@ def get_date(date_dict):
     now = datetime.datetime.now()
     date_choise = get_choise("date")
     if date_choise == "1":
-        date["year"] = now.strftime("%Y")
-        date["month"] = now.strftime("%B")
-        date["day"] = now.strftime("%d")
+        date["dir_year"] = now.strftime("%Y")
+        date["dir_month"] = now.strftime("%B")
+        date["dir_day"] = now.strftime("%d")
+        date["file_name"] = now.strftime("%H_%M_%S")
     elif date_choise == "2":
-        date["year"], date["month"], date["day"] = enter_valid_date()
+        date["dir_year"], date["dir_month"], date["dir_day"] = input_valid_date()
+        date["file_name"] = now.strftime("%Y_%B_%d__%H_%M_%S")
     return date
 
 
-def convert_month_to_digit(month):
-    month = month.lower()
-    match month:
-        case "january":
-            return "1"
-        case "february":
-            return "2"
-        case "march":
-            return "3"
-        case "april":
-            return "4"
-        case "may":
-            return "5"
-        case "june":
-            return "6"
-        case "july":
-            return "7"
-        case "august":
-            return "8"
-        case "september":
-            return "9"
-        case "october":
-            return "10"
-        case "november":
-            return "11"
-        case "december":
-            return "12"
-        case _:
-            return month
-        
-
-def convert_digit_to_month(month):
-    match month:
-        case "1":
-            return "January"
-        case "2":
-            return "February"
-        case "3":
-            return "March"
-        case "4":
-            return "April"
-        case "5":
-            return "May"
-        case "6":
-            return "June"
-        case "7":
-            return "July"
-        case "8":
-            return "August"
-        case "9":
-            return "September"
-        case "10":
-            return "October"
-        case "11":
-            return "November"
-        case "12":
-            return "December"
-        case _:
-            return month
+def input_valid_file(proj_path):
+    end = (".csv", ".txt")
+    file = input(f"\nEnter a valid .csv or .txt file for input (with its path if its not in {proj_path}):   \n> ")
+    while True:
+        if not os.path.exists(file):
+            print(f"\nInput Error: {file}; must be a valid file")
+            file = input("Try again:    \n> ")
+            continue
+        elif not file.endswith(end):
+            print(f"\nInput Error: {file}; must be a .csv or .txt file")
+            file = input("Try again:    \n> ")
+        else:
+            return file

@@ -8,7 +8,7 @@ def split_input_line(line, item_line, item_types):
     item = {}
     item.update(item_line)
     for it in line.split(" "):
-        if it.isnumeric():
+        if is_float(it):
             print(f"Input Error: '{it}'; must have a valid nutrient abbreviation: {it}g/cal/p/car/f")
             item = {}
             return item
@@ -31,7 +31,7 @@ def split_input_line(line, item_line, item_types):
     return item
 
 
-def text_calorie_calculator(items, item, item_types):       #add input_choise; if 1 then the usual if 2 call read from txt which i have to make
+def text_calorie_calculator(items, item, item_types):
     print("------- Minimal calorie calculator -------")
     print("Enter the 'name {number}g/cal/p/car/f' of a specific food (e.g: chicken 200cal 44p): ")
     while True:
