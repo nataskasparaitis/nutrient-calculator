@@ -54,11 +54,13 @@ def input_valid_date():
             return (year, month, day)
 
 
-def get_date(date_dict):
+def get_date(date_dict, date_choise=""):
     date = {}
     date.update(date_dict)
     now = datetime.datetime.now()
-    date_choise = get_choise("date")
+    if date_choise != "1":
+        date_choise = get_choise("date")
+        
     if date_choise == "1":
         date["dir_year"] = now.strftime("%Y")
         date["dir_month"] = now.strftime("%B")

@@ -65,7 +65,7 @@ def get_total_string(total, item_types):
         else:
             total_string += f"Total {key + ":":<10} {value:.1f}{item_types[key]}\n"
 
-    total_string += f"\n{total["calories"]}cal {total["protein"]:.1f}p".replace(".", ",")
+    total_string += f"\n{total["calories"]}cal {total["protein"]}p".replace(".", ",")
     
     return total_string
 

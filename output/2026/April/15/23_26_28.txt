@@ -1,0 +1,14 @@
+Today you ate:
+bulvytes -g 330.0cal 4.5p -car -f 
+rimi vistiena -g 500.0cal 25.0p -car -f 
+piknik -g 840.0cal 74.0p -car -f 
+vistiena -g 300.0cal 55.0p -car -f 
+rauginti agurkai -g 50.0cal 1.0p -car -f 
+
+Total mass:      -
+Total calories:  2020.0cal
+Total protein:   159.5p
+Total carbs:     -
+Total fat:       -
+
+2020,0cal 159,5p

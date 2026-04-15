@@ -1,0 +1,15 @@
+Today you ate:
+dvi karamelines bandeles -g 330.0cal 8.25p -car -f 
+lidl kava -g 165.0cal 25.0p -car -f 
+vistiena -g 600.0cal 99.0p -car -f 
+ryziai -g 450.0cal 8.5p -car -f 
+darzoves -g 200.0cal 3.0p -car -f 
+cipsai -g 230.0cal 1.3p -car -f 
+
+Total mass:      -
+Total calories:  1975.0cal
+Total protein:   145.1p
+Total carbs:     -
+Total fat:       -
+
+1975,0cal 145,1p

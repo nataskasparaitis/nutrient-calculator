@@ -19,73 +19,43 @@ def main():
     project_path = os.path.dirname(os.path.realpath(__file__))
     
 
-
-    
     #cache_choise = get_choise("cache")
-    """print("----------------------------------")
+    print("----------------------------------")
     print("WELCOME TO THE NUTRIENT CALCULATOR")
     print("----------------------------------")
+
+    #INPUT
     input_choise = get_choise("input")
-    output_choise = get_choise("output")"""
+    if input_choise == "1":
+        items = text_calorie_calculator(items, item, item_types)
+    elif input_choise == "2":
+        input_file = input_valid_file(project_path)
+        if input_file.endswith(".csv"):
+            items = read_from_csv(input_file)
+        elif input_file.endswith(".txt"):
+            items = read_from_txt(items, item, input_file, item_types)
 
-
-
-
-
-    """#if provide input file
-    input_file = input_valid_file(project_path)
-    items = read_from_txt(items, item, input_file, item_types)
-    print(items)"""
-
-    """
-    #if dont print to txt file get current date for csv
-    path_names.update(get_date(path_names))
-
-    #if print to txt
-    output_path = f"output/{path_names["dir_year"]}/{path_names["dir_month"]}/{path_names["dir_day"]}"
-    txt_name = output_path + "/" + path_names["file_name"] + ".txt"
-    create_dirs(output_path)
-
-    #always
-    csv_path = f"csv_data/{path_names["dir_year"]}/{path_names["dir_month"]}/{path_names["dir_day"]}"
-    csv_name = csv_path + "/" + path_names["file_name"] + ".csv"
-    create_dirs(csv_path)
-    
-    #if input from console
-    items = text_calorie_calculator(items, item, item_types)
-
-    #always
     total = calc_total_nutrients(items, total)
+    text = get_item_string(items, item_types) + get_total_string(total, item_types) #print date instead of 'today you ate'
 
-    #if print to txt file
-    text = get_item_string(items, item_types) + get_total_string(total, item_types)
-    print_to_txt(txt_name, text)
+    #OUTPUT
+    output_choise = get_choise("output")
+    path_names.update(get_date(path_names, output_choise))
+    csv_name = f"csv_data/{path_names["dir_year"]}/{path_names["dir_month"]}/{path_names["dir_day"]}/{path_names["file_name"]}.csv"
+    csv_path = os.path.dirname(csv_name)
+    create_dirs(csv_path)
 
-    #always for printing logs to csv
+    if output_choise == "1":
+        print(text)
+    elif output_choise == "2":
+        txt_name = f"output/{path_names["dir_year"]}/{path_names["dir_month"]}/{path_names["dir_day"]}/{path_names["file_name"]}.txt"
+        output_path = os.path.dirname(txt_name)
+        create_dirs(output_path)
+        print_to_txt(txt_name, text)
+        print(text)
+
     print_to_csv(items, csv_name)
 
-    #always for printing to screen
-    print(get_item_string(items, item_types))
-    print(get_total_string(total, item_types))"""
-
-
-    #read from csv and print everything to txt and concole
-    """items = read_from_csv(csv_path)
-    total = calc_total_nutrients(items, total)
-    text = get_item_string(items, item_types) + get_total_string(total, item_types)
-    print_to_txt(txt_name, text)
-    print(get_item_string(items, item_types))
-    print(get_total_string(total, item_types))"""
-    #input from console write to csv
-    """items = text_calorie_calculator(items, item, item_types)
-    print_to_csv(items, csv_path)"""
-    #input from console and print to concole and txt
-    """items = text_calorie_calculator(items, item, item_types)
-    total = calc_total_nutrients(items, total)
-    text = get_item_string(items, item_types) + get_total_string(total, item_types)
-    print_to_txt(txt_name, text)
-    print(get_item_string(items, item_types))
-    print(get_total_string(total, item_types))"""
 
 
 if __name__ == "__main__":
@@ -106,3 +76,4 @@ if __name__ == "__main__":
 #add print of a specific date (type in date, most cal, most p, best cal to p ratio, choose your own ratio)
 #'add entry' 'modify entry' options that lets you add/modify the nutrients per 100g of a food in a data file
 #'add recipe' 'modify recipe' that lets you add/modify a recipe thats made up of ingredients
+#add an 'available recepies' based on what ingredients you have

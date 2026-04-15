@@ -1,0 +1,14 @@
+Today you ate:
+kava -g 85.0cal 0.0p -car -f 
+jogurtas -g 150.0cal 3.3p -car -f 
+suris -g 177.0cal 12.2p -car -f 
+uzsaldyta visiena -g 600.0cal 55.0p -car -f 
+wrapai -g 900.0cal 78.1p -car -f 
+
+Total mass:      -
+Total calories:  1912.0cal
+Total protein:   148.6p
+Total carbs:     -
+Total fat:       -
+
+1912,0cal 148,6p
