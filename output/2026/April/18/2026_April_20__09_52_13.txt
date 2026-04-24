@@ -1,0 +1,11 @@
+Today you ate:
+kebabas -g 1075.0cal 43.0p -car -f 
+bulvytes -g 430.0cal 5.0p -car -f 
+
+Total mass:      -
+Total calories:  1505.0cal
+Total protein:   48.0p
+Total carbs:     -
+Total fat:       -
+
+1505,0cal 48,0p

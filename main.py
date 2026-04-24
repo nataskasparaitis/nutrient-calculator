@@ -10,6 +10,7 @@ from ui import get_choise, create_dirs, valid_date, input_valid_date, get_date, 
 
 def main():
     items = []
+    nutrient_items = []
     item = {"name": "-", "mass": "-", "calories": "-", "protein": "-", "carbs": "-", "fat": "-"}
     item_types = {"mass": "g", "calories": "cal", "protein": "p", "carbs": "car", "fat": "f"}
     path_names = {"dir_year": "", "dir_month": "", "dir_day": "", "file_name": ""}
@@ -17,7 +18,12 @@ def main():
     total.update(item)
     total.pop("name")
     project_path = os.path.dirname(os.path.realpath(__file__))
-    
+
+    nutrient_items = read_from_txt(nutrient_items, item, "data/ingredients.txt", item_types)
+    print(nutrient_items)
+    #nutrient_calc_choise = get_choise("nutrient_calculation")
+    #items = text_calorie_calculator(items, item, {"mass": "g"}, nutrient_calc_choise)
+    #print(items)
 
     #cache_choise = get_choise("cache")
     print("----------------------------------")

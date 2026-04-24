@@ -7,14 +7,22 @@ from string_utils import is_digit_alpha, is_float, strip_digits
 def split_input_line(line, item_line, item_types):
     item = {}
     item.update(item_line)
+    type_string = ""
+    for value in item_types.values():
+        last_value = list(item_types.values())[-1]
+        if value != last_value:
+            type_string += f"{value}/"
+        else:
+            type_string += f"{value}"
+
     for it in line.split(" "):
         if is_float(it):
-            print(f"Input Error: '{it}'; must have a valid nutrient abbreviation: {it}g/cal/p/car/f")
+            print(f"Input Error: '{it}'; must have a valid nutrient abbreviation: {it}{type_string}")
             item = {}
             return item
         elif is_digit_alpha(it):
             if not it.endswith(tuple(item_types.values())):
-                print(f"Input Error: '{it}'; must have a valid nutrient abbreviation: {it.replace(strip_digits(it), "")}g/cal/p/car/f")
+                print(f"Input Error: '{it}'; must have a valid nutrient abbreviation: {it.replace(strip_digits(it), "")}{type_string}")
                 item = {}
                 return item
             else:   #add an if that checks if with the suffix removed the item is_digit_alpha (so this 1a0a0cal would print an error)
@@ -31,7 +39,7 @@ def split_input_line(line, item_line, item_types):
     return item
 
 
-def text_calorie_calculator(items, item, item_types):
+def text_calorie_calculator(items, item, item_types, nutrient_calc_choise="2"):
     print("------- Minimal calorie calculator -------")
     print("Enter the 'name {number}g/cal/p/car/f' of a specific food (e.g: chicken 200cal 44p): ")
     while True:
@@ -45,6 +53,10 @@ def text_calorie_calculator(items, item, item_types):
         if len(sline) == 0:
             print(f"Try again")
             continue
+        elif nutrient_calc_choise == "1":
+            if sline["name"] == "-" or sline["mass"] == "-":
+                print(f"Input Error: {line}; must have a name and a mass    \nTry again")
+                continue
 
         items.append(sline)
     return items

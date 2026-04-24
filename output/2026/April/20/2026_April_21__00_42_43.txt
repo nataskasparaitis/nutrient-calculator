@@ -1,0 +1,15 @@
+Today you ate:
+kava -g 70.0cal 0.0p -car -f 
+lion -g 150.0cal 1.5p -car -f 
+piknik -g 420.0cal 37.0p -car -f 
+duona -g 100.0cal 1.4p -car -f 
+ceburekas -g 250.0cal 12.0p -car -f 
+wrapai -g 900.0cal 78.1p -car -f 
+
+Total mass:      -
+Total calories:  1890.0cal
+Total protein:   130.0p
+Total carbs:     -
+Total fat:       -
+
+1890,0cal 130,0p

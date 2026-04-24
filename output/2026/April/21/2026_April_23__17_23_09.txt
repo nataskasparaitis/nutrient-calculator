@@ -1,0 +1,16 @@
+Today you ate:
+burokeliu sriuba -g 150.0cal 3.5p -car -f 
+ceburekas -g 250.0cal 12.0p -car -f 
+kriause -g 100.0cal 0.5p -car -f 
+vistiena -g 350.0cal 55.0p -car -f 
+darzoves -g 100.0cal 5.0p -car -f 
+suris -g 355.0cal 24.5p -car -f 
+duona -g 300.0cal 4.2p -car -f 
+
+Total mass:      -
+Total calories:  1605.0cal
+Total protein:   104.7p
+Total carbs:     -
+Total fat:       -
+
+1605,0cal 104,7p

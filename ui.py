@@ -12,7 +12,8 @@ def get_choise(choise_type):
     prompts = {"cache": "\nWould you like to use cached parameters:    \n1) Yes    \n2) No    \n\n> ",
                "output": "\nWere would you like the calculated result to show:    \n1) only to the screen    \n2) to both screen and file    \n\n> ",
                "input": "\nHow would you like to provide the data:    \n1) Enter it yourself    \n2) Provide a path to a file    \n\n> ",
-               "date": "\nWould you like to use the current date for the output?    \n1) Yes    \n2) No, I would like to enter my own date    \n\n> "
+               "date": "\nWould you like to use the current date for the output?    \n1) Yes    \n2) No, I would like to enter my own date    \n\n> ",
+               "nutrient_calculation": "\nWould you like the nutrients to be calculated for you?    \n1) Yes (only input the name and mass in grams of the food)   \n2) No, I want to enter my own nutrients    \n\n> "
                }
     
     i = input(prompts[choise_type])

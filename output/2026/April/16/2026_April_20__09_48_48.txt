@@ -1,0 +1,15 @@
+Today you ate:
+kava -g 150.0cal 0.0p -car -f 
+rimi protein bar -g 140.0cal 10.0p -car -f 
+kriause -g 100.0cal 0.6p -car -f 
+du jautienos sumustiniai -g 410.0cal 37.0p -car -f 
+piknik -g 840.0cal 74.0p -car -f 
+popkornai -g 800.0cal 10.0p -car -f 
+
+Total mass:      -
+Total calories:  2440.0cal
+Total protein:   131.6p
+Total carbs:     -
+Total fat:       -
+
+2440,0cal 131,6p

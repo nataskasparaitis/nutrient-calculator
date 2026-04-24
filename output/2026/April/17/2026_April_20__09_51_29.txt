@@ -1,0 +1,14 @@
+Today you ate:
+bomzpakis -g 200.0cal 5.0p -car -f 
+vistiena -g 460.0cal 72.6p -car -f 
+darzoves -g 100.0cal 3.0p -car -f 
+piknik -g 420.0cal 37.0p -car -f 
+alkoholis -g 1500.0cal 0.0p -car -f 
+
+Total mass:      -
+Total calories:  2680.0cal
+Total protein:   117.6p
+Total carbs:     -
+Total fat:       -
+
+2680,0cal 117,6p

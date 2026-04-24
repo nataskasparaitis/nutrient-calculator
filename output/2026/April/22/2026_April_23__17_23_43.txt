@@ -1,0 +1,15 @@
+Today you ate:
+bulvytes -g 330.0cal 4.5p -car -f 
+rimi vistiena -g 500.0cal 25.0p -car -f 
+piknik -g 420.0cal 37.0p -car -f 
+vistiena -g 350.0cal 55.0p -car -f 
+darzoves -g 100.0cal 5.0p -car -f 
+bomzpakis -g 200.0cal 5.0p -car -f 
+
+Total mass:      -
+Total calories:  1900.0cal
+Total protein:   131.5p
+Total carbs:     -
+Total fat:       -
+
+1900,0cal 131,5p
