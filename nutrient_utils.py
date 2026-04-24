@@ -71,3 +71,23 @@ def calc_total_nutrients(items, total):
                 total[key] = 0
             total[key] += value
     return total
+
+
+def calc_nutrients_by_weight(items, nutrient_items):
+    temp = {}
+    temp.update({1: 2})
+
+    for item in items:
+        for ni in nutrient_items:
+            multiplier = 0.0
+            if item["name"] == ni["name"]:
+                for key, value in item.items():
+                    if key == "name":
+                        continue
+                    elif key == "mass":
+                        multiplier = value / ni[key]
+                    else:
+                        item.update({key: ni[key] * multiplier})
+                break
+        if multiplier == 0:
+            print(f"Item {item["name"]} is not in the list of available foods")

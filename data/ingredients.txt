@@ -115,4 +115,4 @@ lydytas gouda suris 100g 205cal 13p 4,5car 15f
 tuc tuc 100g 485cal 7,9p 62car 22,5f
 doritos 100g 479cal 6,1p 62car 22f
 bon chance 100g 492cal 6,7p 46,8car 28f
-piknik 100g 295p 26,7p 0,35car 20,8f
+piknik 100g 295cal 26,7p 0,35car 20,8f

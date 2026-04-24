@@ -3,7 +3,7 @@ import os
 import datetime
 import time
 from string_utils import is_float, is_digit_alpha, strip_digits, convert_if_float, convert_if_int
-from nutrient_utils import text_calorie_calculator, calc_total_nutrients
+from nutrient_utils import text_calorie_calculator, calc_total_nutrients, calc_nutrients_by_weight
 from file_io import print_to_csv, read_from_csv, print_to_txt, get_item_string, get_total_string, read_from_txt
 from ui import get_choise, create_dirs, valid_date, input_valid_date, get_date, input_valid_file
 
@@ -20,10 +20,12 @@ def main():
     project_path = os.path.dirname(os.path.realpath(__file__))
 
     nutrient_items = read_from_txt(nutrient_items, item, "data/ingredients.txt", item_types)
-    print(nutrient_items)
-    #nutrient_calc_choise = get_choise("nutrient_calculation")
-    #items = text_calorie_calculator(items, item, {"mass": "g"}, nutrient_calc_choise)
-    #print(items)
+    #print(nutrient_items)
+    nutrient_calc_choise = get_choise("nutrient_calculation")
+    items = text_calorie_calculator(items, item, {"mass": "g"}, nutrient_calc_choise)
+    calc_nutrients_by_weight(items, nutrient_items)
+    print(items)
+    input("Enter")
 
     #cache_choise = get_choise("cache")
     print("----------------------------------")
